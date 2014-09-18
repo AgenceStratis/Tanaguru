@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        <title>ARIA10 Test.Dp.Accordion Passed 01</title>
+    </head>
+    <body>
+        <div>
+            <h1>ARIA10 Test.Dp.Accordion Passed 01</h1>
+            <span>Example based on <a href="http://www.oaa-accessibility.org/examplep/accordian1/">Open Ajax Alliance Accordion</a> with some correction</span>
+
+
+            <form>
+                <div id="accordian1" class="tabpanel" role="tablist" aria-multiselectable="true">
+
+                    <h3 id="tab1" class="tab accordian selected" aria-selected="true" aria-controls="panel1" role="tab" tabindex="0">
+                        <img src="http://repos.kbaccess.org/testcases/ARIA10/Aria10DpAccordion/expanded.gif" alt="expanded" />
+                        Crust
+                    </h3>
+
+                    <div id="panel1" class="panel accordian" aria-labelledby="tab1" aria-hidden="false" aria-expanded="true" role="tabpanel">
+                        <h3 tabindex="0">Select Crust</h3>
+
+                        <ul class="controlList">
+                            <li><input id="p1_opt1" type="radio" name="crust" value="crust1" /><label for="p1_opt1">Deep Dish</label></li>
+                            <li><input id="p1_opt2" type="radio" name="crust" value="crust2" checked="checked" /><label for="p1_opt2">Thick and cheesy</label></li>
+                            <li><input id="p1_opt3" type="radio" name="crust" value="crust3" /><label for="p1_opt3">Thick and spicy</label></li>
+                            <li><input id="p1_opt4" type="radio" name="crust" value="crust4" /><label for="p1_opt4">Thin</label></li>
+                        </ul>
+                    </div>
+
+                    <h3 id="tab2" class="tab accordian" aria-selected="false" aria-controls="panel2" role="tab" tabindex="-1">
+                        <img src="http://repos.kbaccess.org/testcases/ARIA10/Aria10DpAccordion/contracted.gif" alt="collapsed" />
+                        Veggies
+                    </h3>
+                    <div id="panel2" class="panel accordian" aria-labelledby="tab2" aria-hidden="true" aria-expanded="false" role="tabpanel" style="display:none;">
+                        <h3 tabindex="0">Select Vegetables</h3>  
+
+                        <ul class="controlList">
+                            <li><input id="p2_opt1" type="checkbox" name="veg" value="black olives" /><label for="p2_opt1">Black Olives</label></li>
+                            <li><input id="p2_opt2" type="checkbox" name="veg" value="green olives" /><label for="p2_opt2">Green Olives</label></li>
+                            <li><input id="p2_opt3" type="checkbox" name="veg" value="green peppers" /><label for="p2_opt3">Green Peppers</label></li>
+                            <li><input id="p2_opt4" type="checkbox" name="veg" value="mushrooms" /><label for="p2_opt4">Mushrooms</label></li>
+                            <li><input id="p2_opt5" type="checkbox" name="veg" value="onions" /><label for="p2_opt5">Onions</label></li>
+                            <li><input id="p2_opt6" type="checkbox" name="veg" value="pineapple" /><label for="p2_opt6">Pineapple</label></li>
+                        </ul>
+                    </div>
+
+                    <h3 id="tab3" class="tab accordian" aria-selected="false" aria-controls="panel3" role="tab" tabindex="-1">
+                        <img src="http://repos.kbaccess.org/testcases/ARIA10/Aria10DpAccordion/contracted.gif" alt="collapsed" />
+                        Carnivore
+                    </h3>
+                    <div id="panel3" class="panel accordian" aria-labelledby="tab3" aria-hidden="true" aria-expanded="false" role="tabpanel" style="display:none;">
+                        <h3 tabindex="0">Select Carnivore Options</h3>
+
+                        <ul class="controlList">
+                            <li><input id="p3_opt1" type="checkbox" name="meat" value="pepperoni" /><label for="p3_opt1">Pepperoni</label></li>
+                            <li><input id="p3_opt2" type="checkbox" name="meat" value="sausage" /><label for="p3_opt2">Italian Sausage</label></li>
+                            <li><input id="p3_opt3" type="checkbox" name="meat" value="ham" /><label for="p3_opt3">Ham</label></li>
+                            <li><input id="p3_opt4" type="checkbox" name="meat" value="hamburger" /><label for="p3_opt4">Hamburger</label></li>
+                        </ul>
+                    </div>
+
+                    <h3 id="tab4" class="tab accordian" aria-selected="false" aria-controls="panel4" role="tab" tabindex="-1">
+                        <img src="http://repos.kbaccess.org/testcases/ARIA10/Aria10DpAccordion/contracted.gif" alt="collapsed" />
+                        Delivery
+                    </h3>
+                    <div id="panel4" class="panel accordian" aria-labelledby="tab4" aria-hidden="true" aria-expanded="false" role="tabpanel" style="display:none;">
+                        <h3 tabindex="0">Select Delivery Method</h3>
+
+                        <ul class="controlList">
+                            <li><input id="p4_opt1" type="radio" name="delivery" value="delivery1" checked="checked" /><label for="p4_opt1">Delivery</label></li>
+                            <li><input id="p4_opt2" type="radio" name="delivery" value="delivery2" /><label for="p4_opt2">Eat in</label></li>
+                            <li><input id="p4_opt3" type="radio" name="delivery" value="delivery3" /><label for="p4_opt3">Carry out</label></li>
+                            <li><input id="p4_opt4" type="radio" name="delivery" value="delivery4" /><label for="p4_opt4">Overnight mail</label></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+
+            <p class="test-detail">
+                This is the design pattern accordion.
+            </p>
+
+            <p class="test-explanation">
+                The accordion design pattern written with the correct ARIA implementation.
+                <br/>
+                WAI-ARIA Roles, States, and Properties:<br/>
+                The accordion component must have a role of tablist and have aria-aria-multiselectable="true"<br/>
+                This will enable an assistive technology, such as screen reader, to convey that the tablist is an accordion or a aria-multiselectable tablist.<br/>
+                This will also tell the user that the keyboard navigation matches an accordion and not a tablist.<br/>
+                Contained within the tablist is a set of tab/tabpanel pairs.<br/>
+                Each header tab in the tablist has a role of tab.<br/>
+                The accordion panel uses the role tabpanel and should have an aria-labelledby relationship referencing the correponding header having a role of tab.<br/>
+                The tabpanel is considered a grouping for all content consisting of that tabpanel.<br/>
+                An accordion should manage the expanded/collapsed state of each tab by maintain its aria-expanded state.<br/>
+                An accordion should manage the selected state of each tab by maintaining its aria-selected state.<br/>
+                An accordion should convey the visibility of each tabpanel by maintaining its aria-hidden state. <br/>
+            </p>
+
+            This is implementation is part of the testcases files of <a href="http://www.tanaguru.com/">Tanaguru, the opensource accessibility checker</a>
+
+        </div>
+    </body>
+</html>

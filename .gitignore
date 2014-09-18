@@ -39,6 +39,10 @@ engine/reference/target/
 /rules/seo/target/
 /rules/seo-i18n/target/
 /rules/seo-testcases/target/
+/rules/aria1.0/target/
+/rules/aria1.0-testcases/target/
+/rules/aria1.0-i18n/target/
+/rules/aria1.0-resources/target/
 /rules/rgaa2.2-resources/target/
 /rules/seo-resources/target/
 /rules/rules-resources/target/
@@ -87,3 +91,4 @@ target
 nb-configuration.xml
 nbactions.xml
 hsql-db*
+/rules/aria1.0-all-resources/target/

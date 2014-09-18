@@ -6,32 +6,17 @@
         <artifactId>rules</artifactId>
         <version>1.2.0-SNAPSHOT</version>
     </parent>
-    <artifactId>tanaguru-accessiweb2.2</artifactId>
-    <name>accessiweb2.2</name>
+    <artifactId>tanaguru-aria1.0</artifactId>
+    <name>aria1.0</name>
     <build>
-        <finalName>accessiweb2.2-${rulesVersion}</finalName>
+        <finalName>aria1.0-${rulesVersion}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
-                    <skipTests>true</skipTests>
+                    <skipTests>false</skipTests>
                     <testFailureIgnore>true</testFailureIgnore>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>**/hsql*</exclude>
-                        <exclude>**/*.log</exclude>
-                        <exclude>**/*.script</exclude>
-                        <exclude>*.tmp</exclude>
-                        <exclude>sql/**</exclude>
-                        <exclude>deploy.sh</exclude>
-                        <exclude>descriptor.xml</exclude>
-                    </excludes>                    
                 </configuration>
             </plugin>
         </plugins>
@@ -40,6 +25,16 @@
         <dependency>
             <groupId>${rulesGroupId}</groupId>
             <artifactId>tanaguru-rules-commons</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>${rulesGroupId}</groupId>
+            <artifactId>tanaguru-aria1.0-testcases</artifactId>
+            <version>1.2.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>${rulesGroupId}</groupId>
+            <artifactId>tanaguru-aria1.0-i18n</artifactId>
+            <version>1.2.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>${testingToolsGroupId}</groupId>
