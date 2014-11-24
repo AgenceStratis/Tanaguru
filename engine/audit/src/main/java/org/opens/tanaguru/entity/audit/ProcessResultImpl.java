@@ -1,6 +1,6 @@
 /*
  * Tanaguru - Automated webpage assessment
- * Copyright (C) 2008-2011  Open-S Company
+ * Copyright (C) 2008-2014  Open-S Company
  *
  * This file is part of Tanaguru.
  *
@@ -26,20 +26,16 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
-
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlElementRef;
 import javax.xml.bind.annotation.XmlElementRefs;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlTransient;
-
-
-
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonSubTypes;
+import org.codehaus.jackson.annotate.JsonTypeInfo;
 import org.hibernate.envers.Audited;
 import org.hibernate.envers.NotAudited;
-//import org.hibernate.envers.Audited;
-//import org.hibernate.envers.NotAudited;
-//import org.hibernate.envers.RelationTargetAuditMode;
 import org.opens.tanaguru.entity.reference.Test;
 import org.opens.tanaguru.entity.reference.TestImpl;
 import org.opens.tanaguru.entity.subject.WebResource;
@@ -60,11 +56,13 @@ public abstract class ProcessResultImpl implements ProcessResult, Serializable {
 
     private static final long serialVersionUID = -6016677895001819904L;
     @OneToMany(mappedBy = "parentResult", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<ProcessResultImpl> childResultSet;
    
     @ManyToOne
     @JoinColumn(name = "Id_Audit_Gross_Result")
     @NotAudited
+    @JsonIgnore
     private AuditImpl grossResultAudit;
     
     @Id
@@ -75,6 +73,7 @@ public abstract class ProcessResultImpl implements ProcessResult, Serializable {
     @ManyToOne
     @JoinColumn(name = "Id_Audit_Net_Result")
     @NotAudited
+    @JsonIgnore
     private AuditImpl netResultAudit;
     
     @ManyToOne
@@ -90,6 +89,7 @@ public abstract class ProcessResultImpl implements ProcessResult, Serializable {
     @JoinColumn(name = "Id_Web_Resource", nullable = false)
 //    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     @NotAudited
+    @JsonIgnore
     private WebResourceImpl subject;
     
     @ManyToOne
@@ -101,7 +101,7 @@ public abstract class ProcessResultImpl implements ProcessResult, Serializable {
     private int elementCounter;
     
 
-	public ProcessResultImpl() {
+    public ProcessResultImpl() {
         super();
     }
 
@@ -141,6 +141,7 @@ public abstract class ProcessResultImpl implements ProcessResult, Serializable {
     @XmlElementRefs({
         @XmlElementRef(type = org.opens.tanaguru.entity.audit.DefiniteResultImpl.class),
         @XmlElementRef(type = org.opens.tanaguru.entity.audit.IndefiniteResultImpl.class)})
+    @JsonIgnore
     public Collection<ProcessResult> getChildResultList() {
         return (Collection)childResultSet;
     }
@@ -173,6 +174,10 @@ public abstract class ProcessResultImpl implements ProcessResult, Serializable {
     @XmlElementRefs({
         @XmlElementRef(type = org.opens.tanaguru.entity.audit.ProcessRemarkImpl.class),
         @XmlElementRef(type = org.opens.tanaguru.entity.audit.SourceCodeRemarkImpl.class)})
+    @JsonTypeInfo(use=JsonTypeInfo.Id.NAME, include=JsonTypeInfo.As.WRAPPER_OBJECT)
+    @JsonSubTypes({
+        @JsonSubTypes.Type(value=org.opens.tanaguru.entity.audit.ProcessRemarkImpl.class, name="ProcessRemark"), 
+        @JsonSubTypes.Type(value=org.opens.tanaguru.entity.audit.SourceCodeRemarkImpl.class, name="SourceCodeRemark")})
 //    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     public Collection<ProcessRemark> getRemarkSet() {
         return (Collection)remarkSet;
@@ -188,6 +193,9 @@ public abstract class ProcessResultImpl implements ProcessResult, Serializable {
 
     @Override
     @XmlElementRef(type = org.opens.tanaguru.entity.reference.TestImpl.class)
+    @JsonTypeInfo(use=JsonTypeInfo.Id.NAME, include=JsonTypeInfo.As.WRAPPER_OBJECT)
+    @JsonSubTypes({
+        @JsonSubTypes.Type(value=org.opens.tanaguru.entity.reference.TestImpl.class, name="Test")})
     public Test getTest() {
         return test;
     }
